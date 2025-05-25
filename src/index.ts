@@ -59,12 +59,47 @@ async function contadorPalavrasSimples() {
   }
 }
 
+// Função para verificar se um número é par ou ímpar
+async function parOuImpar() {
+  const entrada = await perguntar("Digite um número inteiro: ");
+  const numero = parseInt(entrada);
+
+  if (isNaN(numero)) {
+    console.log("Por favor, digite um número válido.");
+  } else {
+    if (numero % 2 === 0) {
+      console.log(`O número ${numero} é par.`);
+    } else {
+      console.log(`O número ${numero} é ímpar.`);
+    }
+  }
+}
+
+// Função para perguntar ao usuário (usa a mesma função 'perguntar' que você já tem)
+async function tabuadaSimples() {
+  const entrada = await perguntar("Digite um número inteiro: ");
+  const numero = parseInt(entrada);
+
+  if (isNaN(numero)) {
+    console.log("Por favor, digite um número válido.");
+  } else {
+    console.log(`Tabuada do ${numero}:`);
+    for (let i = 1; i <= 10; i++) {
+      const resultado = numero * i;
+      console.log(`${numero} x ${i} = ${resultado}`);
+    }
+  }
+}
+
+
+
 // Função principal com menu
 async function menuPrincipal() {
   console.log("=== Menu ===");
   console.log("1 - Calculadora");
   console.log("2 - Contador de Palavras");
-  console.log("3 - Calcular média de três notas");
+  console.log("3 - Verificar Par ou Ímpar");
+  console.log("4 - Ver Tabuada");
   console.log("0 - Sair");
 
   const opcao = await perguntar("Escolha uma opção: ");
@@ -75,6 +110,12 @@ async function menuPrincipal() {
       break;
     case '2':
       await contadorPalavrasSimples();
+      break;
+    case '3':
+      await parOuImpar();
+      break;
+    case '4':
+      await tabuadaSimples();
       break;
     case '0':
       console.log("Encerrando o programa...");
