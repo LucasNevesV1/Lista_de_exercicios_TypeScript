@@ -13,7 +13,7 @@ O projeto consiste em uma lista de exercícios interativos executados via termin
 
 - readline (módulo nativo do Node.js)
 
-- 📚 Exercícios Implementados
+📚 Exercícios Implementados
 Abaixo, uma breve descrição de cada exercício disponível no projeto:
 
 1 - Soma de dois números: Solicita dois números inteiros e exibe a soma.
