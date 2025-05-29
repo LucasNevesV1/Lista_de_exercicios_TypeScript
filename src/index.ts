@@ -63,7 +63,18 @@ async function calcularMediaNotas() {
 
 //Exercicio 4 - Converter Celsius para Fahrenheit -------------------------------------------------------------------------------------------------
 
-//Mateus bastos colocar exercicio aqui
+async function conversorTemperatura() {
+  const entrada = await perguntar("Digite a temperatura em graus Celsius: ");
+  const celsius = parseFloat(entrada);
+
+  if (isNaN(celsius)) {
+    console.log("Valor inválido. Por favor, digite um número.");
+    return;
+  }
+
+  const fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+  console.log(`A temperatura em Fahrenheit é: ${fahrenheit.toFixed(2)}°F`);
+}
 
 //Exercicio 5 - Exibir numeros pares de 1 a 20 -------------------------------------------------------------------------------------------------
 
@@ -71,7 +82,28 @@ async function calcularMediaNotas() {
 
 //Exercicio 6 - Ler 5 numeros e armazenar em array -------------------------------------------------------------------------------------------------
 
-//Mateus bastos colocar exercicio aqui
+async function leituraArray(): Promise<void> {
+  const numeros: number[] = [];
+
+  console.log("Digite 5 números inteiros:");
+
+  for (let i = 0; i < 5; i++) {
+    const entrada = await perguntar(`Número ${i + 1}: `);
+    const numero = parseInt(entrada);
+
+    if (isNaN(numero)) {
+      console.log("Valor inválido. Tente novamente.");
+      i--; // volta uma posição para repetir a entrada
+    } else {
+      numeros.push(numero);
+    }
+  }
+
+  console.log("\nVocê digitou os seguintes números:");
+  for (const numero of numeros) {
+    console.log(numero);
+  }
+}
 
 //Exercicio 7 - Encontrar maior numero em um array -------------------------------------------------------------------------------------------------
 
@@ -181,7 +213,19 @@ async function OrdenarArray() {
 
 //Exercicio 11 - Classe Pessoa -------------------------------------------------------------------------------------------------
 
-//Mateus bastos colocar exercicio aqui
+async function criarPessoa(): Promise<void> {
+  const nome = await perguntar("Digite o nome da pessoa: ");
+  const idadeStr = await perguntar("Digite a idade da pessoa: ");
+  const idade = parseInt(idadeStr);
+
+  if (isNaN(idade) || idade < 0) {
+    console.log("Idade inválida. Por favor, insira um número inteiro positivo.");
+    return;
+  }
+
+  const pessoa = new Pessoa(nome, idade);
+  pessoa.exibirInformacoes();
+}
 
 //Exercicio 12 - Classe Aluno -------------------------------------------------------------------------------------------------
 
@@ -409,13 +453,13 @@ async function menuPrincipal() {
       await calcularMediaNotas();
       break;
     case '4':
-      //ainda não tem
+      await conversorTemperatura();
       break;
     case '5':
       //ainda nao tem
       break;
     case '6':
-      //ainda nao tem
+      await leituraArray();
       break;
     case '7':
       await encontrarMaiorNumeroUsuario();
@@ -430,7 +474,7 @@ async function menuPrincipal() {
       await OrdenarArray();
       break;
     case '11':
-      //ainda não tem
+      await criarPessoa();
       break;
     case '12':
       await alunop();
