@@ -1,6 +1,9 @@
 📘 Lista de Exercícios em TypeScript
+
 Este projeto é uma coleção de exercícios desenvolvidos em TypeScript com o objetivo de praticar e consolidar conhecimentos na linguagem. Os exercícios abrangem desde operações básicas até conceitos mais avançados, como orientação a objetos e manipulação de arrays.
+
 📌 Sobre o Projeto
+
 O projeto consiste em uma lista de exercícios interativos executados via terminal. Cada exercício é acessado por meio de um menu principal, permitindo ao usuário escolher qual deseja executar. O objetivo é proporcionar uma forma prática de aprender e revisar conceitos fundamentais do TypeScript.
 
 🛠 Tecnologias Utilizadas
