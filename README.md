@@ -53,6 +53,7 @@ Abaixo, uma breve descrição de cada exercício disponível no projeto:
 18 - Contar palavras em uma string: Conta o número de palavras em uma frase fornecida.
 
 🤝 Contribuições
+
 @GuiTrombine06
 @LucasNevesV1
 @Lima-Emilly
