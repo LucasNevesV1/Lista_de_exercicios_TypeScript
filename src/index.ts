@@ -13,7 +13,36 @@ const perguntar = (pergunta: string): Promise<string> => {
   });
 };
 
-// Função para calcular a média de três notas
+//Exercicio 1 - Soma de dois numeros -------------------------------------------------------------------------------------------------
+
+async function somaDoisNumeros() {
+  const num1 = parseInt(await perguntar("Digite o primeiro número inteiro: "));
+  const num2 = parseInt(await perguntar("Digite o segundo número inteiro: "));
+
+  const soma = num1 + num2;
+
+  console.log(`A soma dos dois números é: ${soma}`);
+}
+
+//Exercicio 2 - Verificar par ou impar -------------------------------------------------------------------------------------------------
+
+async function parOuImpar() {
+  const entrada = await perguntar("Digite um número inteiro: ");
+  const numero = parseInt(entrada);
+
+  if (isNaN(numero)) {
+    console.log("Por favor, digite um número válido.");
+  } else {
+    if (numero % 2 === 0) {
+      console.log(`O número ${numero} é par.`);
+    } else {
+      console.log(`O número ${numero} é ímpar.`);
+    }
+  }
+}
+
+//Exercicio 3 - Calcular a média de 3 notas -------------------------------------------------------------------------------------------------
+
 async function calcularMediaNotas() {
   let n1: number, n2: number, n3: number;
 
@@ -32,7 +61,66 @@ async function calcularMediaNotas() {
   console.log(`A média das notas é: ${media.toFixed(2)}`);
 }
 
-// Função para a calculadora simples
+//Exercicio 4 - Converter Celsius para Fahrenheit -------------------------------------------------------------------------------------------------
+
+//Mateus bastos colocar exercicio aqui
+
+//Exercicio 5 - Exibir numeros pares de 1 a 20 -------------------------------------------------------------------------------------------------
+
+//Piter colocar exercicio aqui
+
+//Exercicio 6 - Ler 5 numeros e armazenar em array -------------------------------------------------------------------------------------------------
+
+//Mateus bastos colocar exercicio aqui
+
+//Exercicio 7 - Encontrar maior numero em um array -------------------------------------------------------------------------------------------------
+
+async function encontrarMaiorNumeroUsuario() {
+  const numeros: number[] = [];
+
+  console.log("Digite 5 números inteiros:");
+
+  for (let i = 0; i < 5; i++) {
+    const entrada = await perguntar(`Número ${i + 1}: `);
+    const numero = parseInt(entrada);
+
+    if (isNaN(numero)) {
+      console.log("Entrada inválida. Por favor, digite um número inteiro.");
+      i--; // repete a iteração
+    } else {
+      numeros.push(numero);
+    }
+  }
+
+  let maior = numeros[0];
+
+  for (let i = 1; i < numeros.length; i++) {
+    if (numeros[i] > maior) {
+      maior = numeros[i];
+    }
+  }
+
+  console.log(`O maior número entre os digitados é: ${maior}`);
+}
+
+//Exercicio 8 - Contar vogais em uma String -------------------------------------------------------------------------------------------------
+
+async function contarVogaisUsuario() {
+  const texto = await perguntar("Digite uma palavra ou frase: ");
+
+  const vogais = "aeiouAEIOU";
+  let contador = 0;
+
+  for (let i = 0; i < texto.length; i++) {
+    if (vogais.includes(texto[i])) {
+      contador++;
+    }
+  }
+
+  console.log(`A quantidade de vogais é: ${contador}`);
+}
+
+//Exercicio 9 - Calculadora simples -------------------------------------------------------------------------------------------------
 async function calculadoraSimples() {
   const numero1 = parseFloat(await perguntar("Digite o primeiro número: "));
   const numero2 = parseFloat(await perguntar("Digite o segundo número: "));
@@ -66,19 +154,8 @@ async function calculadoraSimples() {
   }
 }
 
-// Função para o contador de palavras
-async function contadorPalavrasSimples() {
-  const frase = (await perguntar("Digite uma frase: ")).trim();
+// Exercicio 10 - Ordenar Array em ordem crescente -------------------------------------------------------------------------------------------------
 
-  if (frase.length === 0) {
-    console.log("Nenhuma palavra encontrada.");
-  } else {
-    const palavras = frase.split(/\s+/);
-    console.log(`Número de palavras: ${palavras.length}`);
-  }
-}
-
-//função para ordenar um array de números em ordem crescente
 async function OrdenarArray() {
   const numerosInput = await perguntar("Digite números separados por vírgula: ");
   const numerosArray = numerosInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
@@ -101,22 +178,103 @@ async function OrdenarArray() {
 
   console.log(`Números ordenados: ${numerosArray.join(', ')}`);
 }
-// Função para verificar se um número é par ou ímpar
-async function parOuImpar() {
-  const entrada = await perguntar("Digite um número inteiro: ");
-  const numero = parseInt(entrada);
 
-  if (isNaN(numero)) {
-    console.log("Por favor, digite um número válido.");
-  } else {
-    if (numero % 2 === 0) {
-      console.log(`O número ${numero} é par.`);
-    } else {
-      console.log(`O número ${numero} é ímpar.`);
-    }
+//Exercicio 11 - Classe Pessoa -------------------------------------------------------------------------------------------------
+
+//Mateus bastos colocar exercicio aqui
+
+//Exercicio 12 - Classe Aluno -------------------------------------------------------------------------------------------------
+
+class Pessoa {
+  private nome: string;
+  private idade: number;
+
+  constructor(nome: string, idade: number) {
+    this.nome = nome;
+    this.idade = idade;
+  }
+
+  public getNome(): string {
+    return this.nome;
+  }
+
+  public getIdade(): number {
+    return this.idade;
+  }
+
+  public exibirInformacoes(): void {
+    console.log(`Nome: ${this.nome}`);
+    console.log(`Idade: ${this.idade}`);
   }
 }
-// Função para tabuada simples
+
+class Aluno extends Pessoa {
+  private matricula: string;
+
+  constructor(nome: string, idade: number, matricula: string) {
+    super(nome, idade);
+    this.matricula = matricula;
+  }
+
+  public getMatricula(): string {
+    return this.matricula;
+  }
+
+  public override exibirInformacoes(): void {
+    super.exibirInformacoes();
+    console.log(`Matrícula: ${this.matricula}`);
+  }
+}
+
+async function alunop(): Promise<void> {
+  const aluno = new Aluno("João da Silva", 20, "2025A001");
+  aluno.exibirInformacoes();
+}
+
+//Exercicio 13 - Classe Carro -------------------------------------------------------------------------------------------------
+
+// Interface Veiculo com dois métodos
+interface Veiculo {
+  acelerar(): void;
+  frear(): void;
+}
+
+// Classe Carro implementa a interface Veiculo
+class Carro implements Veiculo {
+  private velocidade: number;
+
+  constructor() {
+    this.velocidade = 0;
+  }
+
+  acelerar(): void {
+    this.velocidade += 10;
+    console.log(`Carro acelerando. Velocidade atual: ${this.velocidade} km/h`);
+  }
+
+  frear(): void {
+    if (this.velocidade >= 10) {
+      this.velocidade -= 10;
+    } else {
+      this.velocidade = 0;
+    }
+    console.log(`Carro freando. Velocidade atual: ${this.velocidade} km/h`);
+  }
+}
+
+// Função principal para rodar o exemplo
+async function exemploCarro(): Promise<void> {
+  const meuCarro = new Carro();
+
+  meuCarro.acelerar();
+  meuCarro.acelerar();
+  meuCarro.frear();
+  meuCarro.frear();
+  meuCarro.frear(); // freando novamente para testar se a velocidade fica 0
+}
+
+//Exercicio 14 - Tabuada -------------------------------------------------------------------------------------------------
+
 async function tabuadaSimples() {
   const entrada = await perguntar("Digite um número inteiro: ");
   const numero = parseInt(entrada);
@@ -132,125 +290,168 @@ async function tabuadaSimples() {
   }
 }
 
-// Calculadora de IMC (Índice de Massa Corporal)
+//Exercicio 15 - Calculadora de IMC -------------------------------------------------------------------------------------------------
+
 function classificarIMC(imc: number): string {
-    if (imc < 18.5) {
-        return "Abaixo do peso";
-    } else if (imc < 24.9) {
-        return "Peso normal";
-    } else if (imc < 29.9) {
-        return "Sobrepeso";
-    } else if (imc < 34.9) {
-        return "Obesidade grau 1";
-    } else if (imc < 39.9) {
-        return "Obesidade grau 2";
-    } else {
-        return "Obesidade grau 3 (obesidade mórbida)";
-    }
+  if (imc < 18.5) {
+    return "Abaixo do peso";
+  } else if (imc < 24.9) {
+    return "Peso normal";
+  } else if (imc < 29.9) {
+    return "Sobrepeso";
+  } else if (imc < 34.9) {
+    return "Obesidade grau 1";
+  } else if (imc < 39.9) {
+    return "Obesidade grau 2";
+  } else {
+    return "Obesidade grau 3 (obesidade mórbida)";
+  }
 }
 async function classimc() {
-    const pesoInput = await perguntar("Digite seu peso (kg): ");
-    const alturaInput = await perguntar("Digite sua altura (m): ");
+  const pesoInput = await perguntar("Digite seu peso (kg): ");
+  const alturaInput = await perguntar("Digite sua altura (m): ");
 
-    const peso = parseFloat(pesoInput);
-    const altura = parseFloat(alturaInput);
+  const peso = parseFloat(pesoInput);
+  const altura = parseFloat(alturaInput);
 
-    const imc = peso / (altura * altura);
+  const imc = peso / (altura * altura);
 
-    console.log(`Seu IMC é: ${imc.toFixed(2)}`);
-    console.log(`Classificação: ${classificarIMC(imc)}`);
-
-    rl.close();
-}
-// Calculadora de IMC (Índice de Massa Corporal)
-
-// Programa Java com Herança: Pessoa e Aluno
-class Pessoa {
-    private nome: string;
-    private idade: number;
-
-    constructor(nome: string, idade: number) {
-        this.nome = nome;
-        this.idade = idade;
-    }
-
-    public getNome(): string {
-        return this.nome;
-    }
-
-    public getIdade(): number {
-        return this.idade;
-    }
-
-    public exibirInformacoes(): void {
-        console.log(`Nome: ${this.nome}`);
-        console.log(`Idade: ${this.idade}`);
-    }
+  console.log(`Seu IMC é: ${imc.toFixed(2)}`);
+  console.log(`Classificação: ${classificarIMC(imc)}`);
 }
 
-class Aluno extends Pessoa {
-    private matricula: string;
+//Exercicio 16 - Validar Senha -------------------------------------------------------------------------------------------------
 
-    constructor(nome: string, idade: number, matricula: string) {
-        super(nome, idade);
-        this.matricula = matricula;
-    }
+function validarSenha(senha: string): boolean {
+  if (senha.length < 8) return false;
 
-    public getMatricula(): string {
-        return this.matricula;
-    }
+  let temMaiuscula = false;
+  let temMinuscula = false;
+  let temNumero = false;
 
-    public override exibirInformacoes(): void {
-        super.exibirInformacoes();
-        console.log(`Matrícula: ${this.matricula}`);
-    }
+  for (const c of senha) {
+    if (/[A-Z]/.test(c)) temMaiuscula = true;
+    if (/[a-z]/.test(c)) temMinuscula = true;
+    if (/[0-9]/.test(c)) temNumero = true;
+  }
+
+  return temMaiuscula && temMinuscula && temNumero;
 }
 
-async function alunop(): void {
-    const aluno = new Aluno("João da Silva", 20, "2025A001");
-    aluno.exibirInformacoes();
-}
-// Programa Java com Herança: Pessoa e Aluno
+// Função que executa o exercício Validador de Senha
+async function validadorSenha(): Promise<void> {
+  const senha = await perguntar("Digite a senha: ");
 
-// Função principal com menu
+  if (validarSenha(senha)) {
+    console.log("Senha válida!");
+  } else {
+    console.log(
+      "Senha inválida! A senha deve atender aos seguintes critérios:\n" +
+      "• Pelo menos 8 caracteres\n" +
+      "• Pelo menos uma letra maiúscula\n" +
+      "• Pelo menos uma letra minúscula\n" +
+      "• Pelo menos um número"
+    );
+  }
+}
+
+//Exercicio 17 - Jogo de adivinhação -------------------------------------------------------------------------------------------------
+
+//Joao colocar exercicio aqui
+
+//Exercicio 18 - Contar palavras em uma string -------------------------------------------------------------------------------------------------
+
+async function contadorPalavrasSimples() {
+  const frase = (await perguntar("Digite uma frase: ")).trim();
+
+  if (frase.length === 0) {
+    console.log("Nenhuma palavra encontrada.");
+  } else {
+    const palavras = frase.split(/\s+/);
+    console.log(`Número de palavras: ${palavras.length}`);
+  }
+}
+
+// Função principal com menu -------------------------------------------------------------------------------------------------
+
 async function menuPrincipal() {
-  console.log("=== Menu ===");
-  console.log("1 - Calculadora");
-  console.log("2 - Contador de Palavras");
+  console.log("================== Menu da Lista ==================");
+  console.log("1 - Soma dois números");
+  console.log("2 - Verificar par ou ímpar");
   console.log("3 - Calcular média de três notas");
-  console.log("4 - Ordenar Array de Números");
-  console.log("5 - Verificar se um número é par ou ímpar");
-  console.log("6 - Ver Tabuada");
-  console.log("7 - Calculadora de IMC");
-  console.log("8 - Herança: Pessoa e Aluno");
+  console.log("4 - Converter celsius para Fahrenheit");
+  console.log("5 - Exibir números pares de 1 a 20");
+  console.log("6 - Ler 5 números e armazenar em array");
+  console.log("7 - Encontrar maior número em array");
+  console.log("8 - Contar vogais em uma string");
+  console.log("9 - Calculadora Simples");
+  console.log("10 - Ordenar array em ordem crescente");
+  console.log("11 - Classe Pessoa");
+  console.log("12 - Classe Aluno");
+  console.log("13 - Classe Carro");
+  console.log("14 - Tabuada");
+  console.log("15 - Calculadora de IMC");
+  console.log("16 - Validar Senha");
+  console.log("17 - Jogo de adivinhação");
+  console.log("18 - Contar palavras em uma string");
   console.log("0 - Sair");
 
   const opcao = await perguntar("Escolha uma opção: ");
 
   switch (opcao.trim()) {
     case '1':
-      await calculadoraSimples();
+      await somaDoisNumeros();
       break;
     case '2':
-      await contadorPalavrasSimples();
+      await parOuImpar();
       break;
     case '3':
       await calcularMediaNotas();
       break;
     case '4':
-      await OrdenarArray();
+      //ainda não tem
       break;
     case '5':
-      await parOuImpar();
+      //ainda nao tem
       break;
     case '6':
-      await tabuadaSimples();
+      //ainda nao tem
       break;
     case '7':
-      await classimc();
+      await encontrarMaiorNumeroUsuario();
       break;
     case '8':
+      await contarVogaisUsuario();
+      break;
+    case '9':
+      await calculadoraSimples();
+      break;
+    case '10':
+      await OrdenarArray();
+      break;
+    case '11':
+      //ainda não tem
+      break;
+    case '12':
       await alunop();
+      break;
+    case '13':
+      await exemploCarro();
+      break;
+    case '14':
+      await tabuadaSimples();
+      break;
+    case '15':
+      await classimc();
+      break;
+    case '16':
+      await validadorSenha;
+      break;
+    case '17':
+      //ainda não tem
+      break;
+    case '18':
+      await contadorPalavrasSimples();
       break;
     case '0':
       console.log("Encerrando o programa...");
