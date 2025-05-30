@@ -78,7 +78,14 @@ async function conversorTemperatura() {
 
 //Exercicio 5 - Exibir numeros pares de 1 a 20 -------------------------------------------------------------------------------------------------
 
-//Piter colocar exercicio aqui
+function numerosPares(): void {
+  console.log("Números pares entre 1 e 20:");
+  for (let i = 1; i <= 20; i++) {
+    if (i % 2 === 0) {
+      console.log(i);
+    }
+  }
+}
 
 //Exercicio 6 - Ler 5 numeros e armazenar em array -------------------------------------------------------------------------------------------------
 
@@ -213,7 +220,7 @@ async function OrdenarArray() {
 
 //Exercicio 11 - Classe Pessoa -------------------------------------------------------------------------------------------------
 
-async function criarPessoa(): Promise<void> {
+async function executarCriacaoPessoa(): Promise<void> {
   const nome = await perguntar("Digite o nome da pessoa: ");
   const idadeStr = await perguntar("Digite a idade da pessoa: ");
   const idade = parseInt(idadeStr);
@@ -383,7 +390,7 @@ function validarSenha(senha: string): boolean {
 }
 
 // Função que executa o exercício Validador de Senha
-async function validadorSenha(): Promise<void> {
+async function validarSenhaUsuario(): Promise<void> {
   const senha = await perguntar("Digite a senha: ");
 
   if (validarSenha(senha)) {
@@ -401,7 +408,32 @@ async function validadorSenha(): Promise<void> {
 
 //Exercicio 17 - Jogo de adivinhação -------------------------------------------------------------------------------------------------
 
-//Joao colocar exercicio aqui
+async function jogoAdivinhacao(): Promise<void> {
+  const numeroSorteado = Math.floor(Math.random() * 100) + 1; // de 1 a 100
+  let tentativa: number;
+  let tentativasFeitas = 0;
+
+  console.log("Tente adivinhar o número entre 1 e 100.");
+
+  do {
+    const resposta = await perguntar("Digite sua tentativa: ");
+    tentativa = parseInt(resposta);
+    tentativasFeitas++;
+
+    if (isNaN(tentativa) || tentativa < 1 || tentativa > 100) {
+      console.log("Por favor, digite um número válido entre 1 e 100.");
+      continue;
+    }
+
+    if (tentativa < numeroSorteado) {
+      console.log("Tente um número MAIOR.");
+    } else if (tentativa > numeroSorteado) {
+      console.log("Tente um número MENOR.");
+    } else {
+      console.log(`Parabéns! Você acertou o número em ${tentativasFeitas} tentativa(s).`);
+    }
+  } while (tentativa !== numeroSorteado);
+}
 
 //Exercicio 18 - Contar palavras em uma string -------------------------------------------------------------------------------------------------
 
@@ -456,7 +488,7 @@ async function menuPrincipal() {
       await conversorTemperatura();
       break;
     case '5':
-      //ainda nao tem
+      numerosPares();
       break;
     case '6':
       await leituraArray();
@@ -474,7 +506,7 @@ async function menuPrincipal() {
       await OrdenarArray();
       break;
     case '11':
-      await criarPessoa();
+      await executarCriacaoPessoa();
       break;
     case '12':
       await alunop();
@@ -489,10 +521,10 @@ async function menuPrincipal() {
       await classimc();
       break;
     case '16':
-      await validadorSenha;
+      await validarSenhaUsuario();
       break;
     case '17':
-      //ainda não tem
+      await jogoAdivinhacao();
       break;
     case '18':
       await contadorPalavrasSimples();
