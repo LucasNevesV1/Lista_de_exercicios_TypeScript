@@ -22,6 +22,8 @@ async function pausar(callback: () => void) {
 //Exercicio 1 - Soma de dois numeros -------------------------------------------------------------------------------------------------
 
 async function somaDoisNumeros() {
+  console.log("================== Excercício 1 ==================");
+
   const num1 = parseInt(await perguntar("Digite o primeiro número inteiro: "));
   const num2 = parseInt(await perguntar("Digite o segundo número inteiro: "));
 
@@ -35,6 +37,8 @@ async function somaDoisNumeros() {
 //Exercicio 2 - Verificar par ou impar -------------------------------------------------------------------------------------------------
 
 async function parOuImpar() {
+  console.log("================== Excercício 2 ==================");
+
   const entrada = await perguntar("Digite um número inteiro: ");
   const numero = parseInt(entrada);
 
@@ -54,6 +58,8 @@ async function parOuImpar() {
 //Exercicio 3 - Calcular a média de 3 notas -------------------------------------------------------------------------------------------------
 
 async function calcularMediaNotas() {
+  console.log("================== Excercício 3 ==================");
+
   let n1: number, n2: number, n3: number;
 
   while (true) {
@@ -76,6 +82,8 @@ async function calcularMediaNotas() {
 //Exercicio 4 - Converter Celsius para Fahrenheit -------------------------------------------------------------------------------------------------
 
 async function conversorTemperatura() {
+  console.log("================== Excercício 4 ==================");
+
   const entrada = await perguntar("Digite a temperatura em graus Celsius: ");
   const celsius = parseFloat(entrada);
 
@@ -94,6 +102,8 @@ async function conversorTemperatura() {
 //Exercicio 5 - Exibir numeros pares de 1 a 20 -------------------------------------------------------------------------------------------------
 
 function numerosPares(): void {
+  console.log("================== Excercício 5 ==================");
+
   console.log("Números pares entre 1 e 20:");
   for (let i = 1; i <= 20; i++) {
     if (i % 2 === 0) {
@@ -106,6 +116,8 @@ function numerosPares(): void {
 //Exercicio 6 - Ler 5 numeros e armazenar em array -------------------------------------------------------------------------------------------------
 
 async function leituraArray(): Promise<void> {
+  console.log("================== Excercício 6 ==================");
+
   const numeros: number[] = [];
 
   console.log("Digite 5 números inteiros:");
@@ -132,6 +144,8 @@ async function leituraArray(): Promise<void> {
 //Exercicio 7 - Encontrar maior numero em um array -------------------------------------------------------------------------------------------------
 
 async function encontrarMaiorNumeroUsuario() {
+  console.log("================== Excercício 7 ==================");
+
   const numeros: number[] = [];
 
   console.log("Digite 5 números inteiros:");
@@ -163,6 +177,8 @@ async function encontrarMaiorNumeroUsuario() {
 //Exercicio 8 - Contar vogais em uma String -------------------------------------------------------------------------------------------------
 
 async function contarVogaisUsuario() {
+  console.log("================== Excercício 8 ==================");
+
   const texto = await perguntar("Digite uma palavra ou frase: ");
 
   const vogais = "aeiouAEIOU";
@@ -180,6 +196,8 @@ async function contarVogaisUsuario() {
 
 //Exercicio 9 - Calculadora simples -------------------------------------------------------------------------------------------------
 async function calculadoraSimples() {
+  console.log("================== Excercício 9 ==================");
+
   const numero1 = parseFloat(await perguntar("Digite o primeiro número: "));
   const numero2 = parseFloat(await perguntar("Digite o segundo número: "));
   const operacao = (await perguntar("Digite a operação (+, -, *, /): ")).trim();
@@ -216,6 +234,8 @@ async function calculadoraSimples() {
 // Exercicio 10 - Ordenar Array em ordem crescente -------------------------------------------------------------------------------------------------
 
 async function OrdenarArray() {
+  console.log("================== Excercício 10 ==================");
+
   const numerosInput = await perguntar("Digite números separados por vírgula: ");
   const numerosArray = numerosInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
 
@@ -242,6 +262,8 @@ async function OrdenarArray() {
 //Exercicio 11 - Classe Pessoa -------------------------------------------------------------------------------------------------
 
 async function executarCriacaoPessoa(): Promise<void> {
+  console.log("================== Excercício 11 ==================");
+
   const nome = await perguntar("Digite o nome da pessoa: ");
   const idadeStr = await perguntar("Digite a idade da pessoa: ");
   const idade = parseInt(idadeStr);
@@ -301,6 +323,8 @@ class Aluno extends Pessoa {
 }
 
 async function alunop(): Promise<void> {
+  console.log("================== Excercício 12 ==================");
+
   const nome = await perguntar("Digite o nome do aluno: ");
   const idadeStr = await perguntar("Digite a idade do aluno: ");
   const matricula = await perguntar("Digite a matrícula do aluno: ");
@@ -351,12 +375,14 @@ class Carro implements Veiculo {
 
 // Função principal para rodar o exemplo
 async function exemploCarro(): Promise<void> {
-    const nomeCarro = await perguntar("Digite o nome do carro: ");
+  console.log("================== Excercício 13 ==================");
+
+  const nomeCarro = await perguntar("Digite o nome do carro: ");
 
   console.log(`\nSimulando ações para o carro: ${nomeCarro}`);
 
   const meuCarro = new Carro();
-  
+
   meuCarro.acelerar();
   meuCarro.acelerar();
   meuCarro.frear();
@@ -368,6 +394,8 @@ async function exemploCarro(): Promise<void> {
 //Exercicio 14 - Tabuada -------------------------------------------------------------------------------------------------
 
 async function tabuadaSimples() {
+  console.log("================== Excercício 14 ==================");
+
   const entrada = await perguntar("Digite um número inteiro: ");
   const numero = parseInt(entrada);
 
@@ -401,6 +429,8 @@ function classificarIMC(imc: number): string {
   }
 }
 async function classimc() {
+  console.log("================== Excercício 15 ==================");
+
   const pesoInput = await perguntar("Digite seu peso (kg): ");
   const alturaInput = await perguntar("Digite sua altura (m): ");
 
@@ -434,6 +464,8 @@ function validarSenha(senha: string): boolean {
 
 // Função que executa o exercício Validador de Senha
 async function validarSenhaUsuario(): Promise<void> {
+  console.log("================== Excercício 16 ==================");
+
   const senha = await perguntar("Digite a senha: ");
 
   if (validarSenha(senha)) {
@@ -453,6 +485,8 @@ async function validarSenhaUsuario(): Promise<void> {
 //Exercicio 17 - Jogo de adivinhação -------------------------------------------------------------------------------------------------
 
 async function jogoAdivinhacao(): Promise<void> {
+  console.log("================== Excercício 17 ==================");
+
   const numeroSorteado = Math.floor(Math.random() * 100) + 1; // de 1 a 100
   let tentativa: number;
   let tentativasFeitas = 0;
@@ -483,6 +517,8 @@ async function jogoAdivinhacao(): Promise<void> {
 //Exercicio 18 - Contar palavras em uma string -------------------------------------------------------------------------------------------------
 
 async function contadorPalavrasSimples() {
+  console.log("================== Excercício 18 ==================");
+
   const frase = (await perguntar("Digite uma frase: ")).trim();
 
   if (frase.length === 0) {
@@ -581,6 +617,7 @@ async function menuPrincipal() {
       return;
     default:
       console.log("Opção inválida.");
+      menuPrincipal();
   }
 
   console.log(""); // Linha em branco para separar execuções
