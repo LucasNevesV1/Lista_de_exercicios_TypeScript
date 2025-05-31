@@ -54,10 +54,11 @@ Abaixo, uma breve descrição de cada exercício disponível no projeto:
 
 🤝 Contribuições
 
-@GuiTrombine06
-@LucasNevesV1
-@Lima-Emilly
-@Henry-Barreto
-@liv555
-@teusbonfim
-@op1ter
+- [Emily Lima](https://github.com/Lima-Emilly)
+- [Guilherme Trombini](https://github.com/GuiTrombini06)
+- [Henrique Barreto](https://github.com/Henry-Barreto)
+- [João Victor](https://github.com/op1ter)
+- [Livia Conti](https://github.com/liv555)
+- [Lucas das Neves](https://github.com/LucasNevesV1)
+- [Mateus Bastos](https://github.com/maat-bastos)
+- [Mateus Bonfim](https://github.com/teusbonfim)
