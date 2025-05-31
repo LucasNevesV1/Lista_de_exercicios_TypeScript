@@ -15,12 +15,18 @@ const perguntar = (pergunta) => {
         rl.question(pergunta, resolve);
     });
 };
+async function pausar(callback) {
+    rl.question('\nPressione Enter para voltar ao menu...', () => {
+        callback();
+    });
+}
 //Exercicio 1 - Soma de dois numeros -------------------------------------------------------------------------------------------------
 async function somaDoisNumeros() {
     const num1 = parseInt(await perguntar("Digite o primeiro número inteiro: "));
     const num2 = parseInt(await perguntar("Digite o segundo número inteiro: "));
     const soma = num1 + num2;
     console.log(`A soma dos dois números é: ${soma}`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 2 - Verificar par ou impar -------------------------------------------------------------------------------------------------
 async function parOuImpar() {
@@ -37,6 +43,7 @@ async function parOuImpar() {
             console.log(`O número ${numero} é ímpar.`);
         }
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 3 - Calcular a média de 3 notas -------------------------------------------------------------------------------------------------
 async function calcularMediaNotas() {
@@ -54,6 +61,7 @@ async function calcularMediaNotas() {
     }
     const media = (n1 + n2 + n3) / 3;
     console.log(`A média das notas é: ${media.toFixed(2)}`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 4 - Converter Celsius para Fahrenheit -------------------------------------------------------------------------------------------------
 async function conversorTemperatura() {
@@ -61,10 +69,11 @@ async function conversorTemperatura() {
     const celsius = parseFloat(entrada);
     if (isNaN(celsius)) {
         console.log("Valor inválido. Por favor, digite um número.");
-        return;
+        pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
     }
     const fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
     console.log(`A temperatura em Fahrenheit é: ${fahrenheit.toFixed(2)}°F`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 5 - Exibir numeros pares de 1 a 20 -------------------------------------------------------------------------------------------------
 function numerosPares() {
@@ -74,6 +83,7 @@ function numerosPares() {
             console.log(i);
         }
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 6 - Ler 5 numeros e armazenar em array -------------------------------------------------------------------------------------------------
 async function leituraArray() {
@@ -94,6 +104,7 @@ async function leituraArray() {
     for (const numero of numeros) {
         console.log(numero);
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 7 - Encontrar maior numero em um array -------------------------------------------------------------------------------------------------
 async function encontrarMaiorNumeroUsuario() {
@@ -117,6 +128,7 @@ async function encontrarMaiorNumeroUsuario() {
         }
     }
     console.log(`O maior número entre os digitados é: ${maior}`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 8 - Contar vogais em uma String -------------------------------------------------------------------------------------------------
 async function contarVogaisUsuario() {
@@ -129,6 +141,7 @@ async function contarVogaisUsuario() {
         }
     }
     console.log(`A quantidade de vogais é: ${contador}`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 9 - Calculadora simples -------------------------------------------------------------------------------------------------
 async function calculadoraSimples() {
@@ -161,6 +174,7 @@ async function calculadoraSimples() {
         default:
             console.log("Operação inválida.");
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 // Exercicio 10 - Ordenar Array em ordem crescente -------------------------------------------------------------------------------------------------
 async function OrdenarArray() {
@@ -181,6 +195,7 @@ async function OrdenarArray() {
         }
     }
     console.log(`Números ordenados: ${numerosArray.join(', ')}`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 11 - Classe Pessoa -------------------------------------------------------------------------------------------------
 async function executarCriacaoPessoa() {
@@ -189,10 +204,11 @@ async function executarCriacaoPessoa() {
     const idade = parseInt(idadeStr);
     if (isNaN(idade) || idade < 0) {
         console.log("Idade inválida. Por favor, insira um número inteiro positivo.");
-        return;
+        pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
     }
     const pessoa = new Pessoa(nome, idade);
     pessoa.exibirInformacoes();
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 12 - Classe Aluno -------------------------------------------------------------------------------------------------
 class Pessoa {
@@ -225,8 +241,18 @@ class Aluno extends Pessoa {
     }
 }
 async function alunop() {
-    const aluno = new Aluno("João da Silva", 20, "2025A001");
+    const nome = await perguntar("Digite o nome do aluno: ");
+    const idadeStr = await perguntar("Digite a idade do aluno: ");
+    const matricula = await perguntar("Digite a matrícula do aluno: ");
+    const idade = parseInt(idadeStr);
+    if (isNaN(idade)) {
+        console.log("Idade inválida. Tente novamente.");
+        return alunop(); // reinicia a função se a idade for inválida
+    }
+    const aluno = new Aluno(nome, idade, matricula);
+    console.log("\nInformações do Aluno:");
     aluno.exibirInformacoes();
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 // Classe Carro implementa a interface Veiculo
 class Carro {
@@ -249,12 +275,15 @@ class Carro {
 }
 // Função principal para rodar o exemplo
 async function exemploCarro() {
+    const nomeCarro = await perguntar("Digite o nome do carro: ");
+    console.log(`\nSimulando ações para o carro: ${nomeCarro}`);
     const meuCarro = new Carro();
     meuCarro.acelerar();
     meuCarro.acelerar();
     meuCarro.frear();
     meuCarro.frear();
     meuCarro.frear(); // freando novamente para testar se a velocidade fica 0
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 14 - Tabuada -------------------------------------------------------------------------------------------------
 async function tabuadaSimples() {
@@ -270,6 +299,7 @@ async function tabuadaSimples() {
             console.log(`${numero} x ${i} = ${resultado}`);
         }
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 15 - Calculadora de IMC -------------------------------------------------------------------------------------------------
 function classificarIMC(imc) {
@@ -300,6 +330,7 @@ async function classimc() {
     const imc = peso / (altura * altura);
     console.log(`Seu IMC é: ${imc.toFixed(2)}`);
     console.log(`Classificação: ${classificarIMC(imc)}`);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 16 - Validar Senha -------------------------------------------------------------------------------------------------
 function validarSenha(senha) {
@@ -331,6 +362,7 @@ async function validarSenhaUsuario() {
             "• Pelo menos uma letra minúscula\n" +
             "• Pelo menos um número");
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 17 - Jogo de adivinhação -------------------------------------------------------------------------------------------------
 async function jogoAdivinhacao() {
@@ -356,6 +388,7 @@ async function jogoAdivinhacao() {
             console.log(`Parabéns! Você acertou o número em ${tentativasFeitas} tentativa(s).`);
         }
     } while (tentativa !== numeroSorteado);
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 //Exercicio 18 - Contar palavras em uma string -------------------------------------------------------------------------------------------------
 async function contadorPalavrasSimples() {
@@ -367,6 +400,7 @@ async function contadorPalavrasSimples() {
         const palavras = frase.split(/\s+/);
         console.log(`Número de palavras: ${palavras.length}`);
     }
+    pausar(menuPrincipal); // chama a função de pausa e só volta ao menu após Enter
 }
 // Função principal com menu -------------------------------------------------------------------------------------------------
 async function menuPrincipal() {
@@ -454,6 +488,5 @@ async function menuPrincipal() {
             console.log("Opção inválida.");
     }
     console.log(""); // Linha em branco para separar execuções
-    await menuPrincipal(); // Reinicia o menu após uma operação
 }
 menuPrincipal(); // Executa o programa
